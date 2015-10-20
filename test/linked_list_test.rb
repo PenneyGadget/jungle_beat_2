@@ -35,14 +35,13 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_list_can_append_one_node
-    skip
     list = LinkedList.new("node_1")
 
-    assert_equal "node_1", list.data
+    assert_equal "node_1", list.head.data
     assert_nil list.pointer
 
     list.append("node_2")
-    assert_equal
+    assert_equal "node_2", list.head.pointer.data
   end
 
   def test_that_new_node_points_to_nil_and_is_the_tail
