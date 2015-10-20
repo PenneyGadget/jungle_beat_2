@@ -56,11 +56,18 @@ class LinkedList
     end
   end
 
-  def pop
-
+  def count
+    count = 1
+    current_head = @head
+    until current_head.pointer == nil
+      current_head = current_head.pointer
+      count += 1
+    end
+    count
   end
 
-  def count
+  def pop(num = 1)
+
 
   end
 
@@ -69,14 +76,6 @@ class LinkedList
   end
 
   def all
-
-  end
-
-  def find_by_index
-
-  end
-
-  def find_by_data
 
   end
 

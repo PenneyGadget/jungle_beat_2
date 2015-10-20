@@ -160,15 +160,26 @@ class LinkedListTest < Minitest::Test
     refute list.includes?("puppies")
   end
 
+  def test_count_method_returns_the_number_of_nodes_in_the_list
+    list = LinkedList.new(1)
+    list.append(2)
+    list.append(4)
+    list.append(8)
+
+    assert_equal 4, list.count
+  end
+
   def test_list_can_pop_the_tail_node_off
     skip
+    list = LinkedList.new("Hello")
+    list.append("there")
+    list.append("friend")
+    list.pop
+
+    assert_equal "there", list.find_tail.data
   end
 
   def test_list_has_a_new_tail
-    skip
-  end
-
-  def test_count_method_returns_the_number_of_nodes_in_the_list
     skip
   end
 
