@@ -36,15 +36,24 @@ class LinkedList
     current_head = @head
     new_node = Node.new(data)
 
-    until count == position
-      count += 1
+    until count == position -1
+      count +=1
       current_head = current_head.pointer
     end
-    new_node.pointer = current_head
+    new_node.pointer = current_head.pointer
+    current_head.pointer = new_node
   end
 
   def includes?(data)
-
+    current_head = @head
+    while current_head.pointer != nil
+      current_head = current_head.pointer
+    end
+    if current_head.data == data
+      true
+    else
+      false
+    end
   end
 
   def pop
@@ -80,7 +89,3 @@ class LinkedList
   end
 
 end
-
-list = LinkedList.new("1")
-list.append("2")
-list

@@ -117,23 +117,47 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_list_can_get_a_new_node_inserted_in_the_middle
-    skip
     list = LinkedList.new("node_1")
     list.append("node_2")
     list.append("node_3")
-    list.insert("and", 1)
+    list.insert(1, "and")
 
     assert_equal "and", list.head.pointer.data
     assert_equal "node_2", list.head.pointer.pointer.data
     # assert_equal "node_1 and node_2 node_3", list.all
   end
 
-  def test_list_can_add_two_nodes_in_the_middle
-    skip
+  def test_list_can_insert_two_nodes_to_the_list
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+    list.append("node_3")
+    list.insert(1, "and")
+    list.insert(3, "&")
+
+    assert_equal "and", list.head.pointer.data
+    assert_equal "&", list.head.pointer.pointer.pointer.data
+    # assert_equal "node_1 and node_2 & node_3", list.all
+  end
+
+  def test_list_can_insert_two_nodes_next_to_each_other
+    list = LinkedList.new("Hello")
+    list.append("there")
+    list.append("friend")
+    list.insert(2, "lovely")
+    assert_equal "lovely", list.head.pointer.pointer.data
+
+    list.insert(2, "beautiful")
+    assert_equal "beautiful", list.head.pointer.pointer.data
+    # assert_equal "Hello there beautiful lovely friend", list.all
   end
 
   def test_includes_method_returns_a_boolean_value
-    skip
+    list = LinkedList.new("Hello")
+    list.append("there")
+    list.append("friend")
+
+    assert list.includes?("friend")
+    refute list.includes?("puppies")
   end
 
   def test_list_can_pop_the_tail_node_off
