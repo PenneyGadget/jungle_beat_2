@@ -27,8 +27,8 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_that_one_node_is_also_the_tail
-    node = Node.new("ooohh")
-    list = LinkedList.new("hmmmm")
+    node = Node.new("node!")
+    list = LinkedList.new("list!")
 
     assert_nil node.pointer
     assert_nil list.pointer
@@ -44,64 +44,88 @@ class LinkedListTest < Minitest::Test
     assert_equal "node_2", list.head.pointer.data
   end
 
-  def test_that_new_node_points_to_nil_and_is_the_tail
-    skip
+  def test_that_new_node_points_to_nil_and_is_therefore_the_tail
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+
+    assert_nil list.head.pointer.pointer
   end
 
   def test_original_node_is_the_head
-    skip
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+
+    assert_equal "node_1", list.head.data
   end
 
-  def test_there_are_now_two_nodes
-    skip
+  def test_head_node_points_to_data_in_second_node
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+
+    assert_equal "node_2", list.head.pointer.data
   end
 
   def test_list_can_append_two_nodes
-    skip
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+    list.append("node_3")
+
+    assert_equal "node_2", list.head.pointer.data
+    assert_equal "node_3", list.head.pointer.pointer.data
   end
 
   def test_the_second_of_those_new_nodes_points_to_nil_and_is_the_tail
-    skip
-  end
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+    list.append("node_3")
 
-  def test_there_are_now_three_nodes
-
-  end
-
-  def test_list_can_append_more_than_two_nodes
-    skip
-  end
-
-  def test_we_can_pass_in_a_string_and_each_word_becomes_a_node_on_the_list
-    skip
+    assert_nil list.head.pointer.pointer.pointer
   end
 
   def test_we_can_find_the_tail_of_our_list
-    skip
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+    list.append("node_3")
+
+    assert_equal "node_3", list.find_tail.data
+    assert_nil list.find_tail.pointer
   end
 
   def test_list_can_prepend_one_node
-    skip
+    list = LinkedList.new("node_1")
+    list.prepend("new_node_1")
+
+    assert_equal "new_node_1", list.head.data
+    assert_equal "node_1", list.head.pointer.data
   end
 
-  def test_that_new_node_is_now_the_head
-    skip
+  def test_old_head_node_is_now_the_tail
+    list = LinkedList.new("node_1")
+    list.prepend("new_node_1")
+
+    assert_equal "node_1", list.find_tail.data
   end
 
-  def test_list_can_prepend_two_nodes
-    skip
-  end
+  def test_list_can_prepend_two_nodes_and_everyone_is_where_they_should_be
+    list = LinkedList.new("node_1")
+    list.prepend("node_2")
+    list.prepend("node_3")
 
-  def test_the_first_of_those_nodes_is_now_the_head
-    skip
-  end
-
-  def test_prepend_more_than_two_nodes
-    skip
+    assert_equal "node_3", list.head.data
+    assert_equal "node_2", list.head.pointer.data
+    assert_equal "node_1", list.find_tail.data
   end
 
   def test_list_can_get_a_new_node_inserted_in_the_middle
     skip
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+    list.append("node_3")
+    list.insert("and", 1)
+
+    assert_equal "and", list.head.pointer.data
+    assert_equal "node_2", list.head.pointer.pointer.data
+    # assert_equal "node_1 and node_2 node_3", list.all
   end
 
   def test_list_can_add_two_nodes_in_the_middle
