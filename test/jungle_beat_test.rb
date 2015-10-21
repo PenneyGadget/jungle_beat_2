@@ -132,7 +132,11 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_we_can_change_the_speed_of_the_playback
+    skip
+    jb = JungleBeat.new("bee bop a lula bam bam boom")
 
+    assert jb.rate(200)
+    asset jb.rate(50)
   end
 
   def test_we_can_change_the_voice
@@ -140,7 +144,11 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_we_can_reset_the_rate_back_to_the_original_speed
+    skip
+    jb = JungleBeat.new("bee bop a lula bam bam boom")
 
+    assert jb.rate(200)
+    assert_equal jb.reset_rate, jb.play
   end
 
   def test_we_can_reset_the_voice_back_to_the_original_voice

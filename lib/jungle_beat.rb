@@ -16,22 +16,28 @@ class JungleBeat
     split_beats[1..-1].each do |beat|
       linked_list.append(beat)
     end
+    @voices = ["Agnes", "Allison", "Ava", "Kathy", "Princess", "Samantha",
+               "Susan", "Vicki", "Victoria", "Alex", "Bruce", "Fred", "Junio",
+               "Ralph", "Tom", "Albert", "Bad News", "Bahh", "Bells", "Boing",
+               "Bubbles", "Cello", "Deranged", "Good News", "Hysterical",
+               "Pipe Organ", "Trinoids", "Whisper", "Zarvox"]
   end
 
   def play
-    `say -r 200 -v Boing #{beats}`
+    `say -r 500 -v Boing #{beats}`
   end
 
-  def rate
-
+  def rate(rate)
+    #how do I make this overwrite the play method permanently?
+    `say -r #{rate} -v Boing #{beats}`
   end
 
   def reset_rate
-
+    `say -r 500 -v Boing #{beats}`
   end
 
   def voice
-
+    `say -r 500 -v Boing #{beats}`
   end
 
   def reset_voice
