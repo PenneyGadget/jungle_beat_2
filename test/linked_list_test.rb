@@ -4,6 +4,12 @@ require '../lib/linked_list'
 
 class LinkedListTest < Minitest::Test
 
+  def test_an_empty_list_returns_nil
+    list = LinkedList.new
+
+    assert_equal nil, list.all
+  end
+
   def test_there_is_a_node
     node = Node.new(1)
 
@@ -253,7 +259,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "bright copper kettles and warm woolen mittens", list.all
   end
 
-  def test_we_can_delete_a_node_based_on_its_index
+  def test_we_can_delete_any_node_other_than_the_head_based_on_its_index
     list = LinkedList.new("bee")
     list.append("bop")
     list.append("a")
@@ -263,7 +269,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "bee a lula", list.all
   end
 
-  def test_we_can_delete_a_node_based_on_its_data
+  def test_we_can_delete_any_node_other_than_the_head_based_on_its_data
     list = LinkedList.new("bee")
     list.append("bop")
     list.append("a")
@@ -276,10 +282,7 @@ class LinkedListTest < Minitest::Test
 
   def test_we_can_delete_the_head_and_second_node_becomes_new_head
     skip
-  end
-
-  def test_delete_more_items_then_are_in_the_list
-    skip
+    #should the second node become the new head or should the list cease to exist?
   end
 
   def test_we_try_to_find_more_items_than_are_in_the_list
@@ -287,25 +290,31 @@ class LinkedListTest < Minitest::Test
     #list is 8 items long and we say list.find(4, 10)
   end
 
-  def test_we_try_to_pop_off_more_items_than_the_list_contains
-
+  def test_we_try_to_pop_off_more_items_than_are_in_the_list
+    skip
   end
 
   def test_an_error_is_raised_if_we_try_to_pop_off_the_tail_while_its_also_the_head
-
+    skip
   end
 
   def test_an_error_is_raised_if_we_try_to_remove_last_element_while_its_also_the_head
-
+    skip
   end
 
   def test_an_error_is_raised_if_we_try_to_find_the_second_to_last_element_in_a_one_element_list
-
+    skip
   end
 
-  def test_node_data_can_be_any_kind_of_data
+  def test_node_data_can_be_any_kind_of_data_and_we_can_do_all_the_things
+    list = LinkedList.new("whoa there")
+    list.append(234)
+    list.prepend(["apples", "oranges"])
+    list.insert(1, "are so")
+    list.append({"puppies" => :cute})
 
+    assert_equal 5, list.count
+    assert_equal "apples oranges are so whoa there 234 {\"puppies\"=>:cute}", list.all
   end
-
 
 end

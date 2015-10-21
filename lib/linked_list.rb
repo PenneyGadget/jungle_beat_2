@@ -5,7 +5,7 @@ class LinkedList
 
   attr_accessor :head, :data, :pointer
 
-  def initialize(data)
+  def initialize(data = nil)
     @head = Node.new(data)
   end
 
@@ -111,14 +111,18 @@ class LinkedList
   end
 
   def all
-    current_head = @head
-    list = []
-    list << current_head.data
-    until current_head.pointer == nil
-      current_head = current_head.pointer
+    if head.data.nil?
+      return nil
+    else
+      current_head = @head
+      list = []
       list << current_head.data
+      until current_head.pointer == nil
+        current_head = current_head.pointer
+        list << current_head.data
+      end
+      list.join(" ")
     end
-    list.join(" ")
   end
 
   def delete_by_index(num)
@@ -146,3 +150,10 @@ class LinkedList
   end
 
 end
+
+list = LinkedList.new("bap")
+list.append(2)
+list.prepend(["apples", "oranges"])
+list.insert(1, "are so")
+list.append({"puppies" => :cute})
+list.all
