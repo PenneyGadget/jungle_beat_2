@@ -111,20 +111,38 @@ class LinkedList
   end
 
   def all
-
+    current_head = @head
+    list = []
+    list << current_head.data
+    until current_head.pointer == nil
+      current_head = current_head.pointer
+      list << current_head.data
+    end
+    list.join(" ")
   end
 
-  def delete_by_index
-
+  def delete_by_index(num)
+    removed = []
+    count = 0
+    current_head = @head
+    until count == num - 1
+      current_head = current_head.pointer
+      count += 1
+    end
+    removed << current_head.pointer.data
+    current_head.pointer = current_head.pointer.pointer
+    removed.join(" ")
   end
 
-  def delete_by_data
-
+  def delete_by_data(data)
+    removed = []
+    current_head = @head
+    until current_head.pointer.data == data
+      current_head = current_head.pointer
+    end
+    removed << current_head.pointer.data
+    current_head.pointer = current_head.pointer.pointer
+    removed.join(" ")
   end
 
 end
-
-list = LinkedList.new("boom")
-list.append("zoom")
-list.append("loom")
-list.pop

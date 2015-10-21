@@ -70,6 +70,7 @@ class LinkedListTest < Minitest::Test
     list.append("node_2")
 
     assert_equal 2, list.count
+    assert_equal "node_1 node_2", list.all
   end
 
   def test_list_can_append_two_nodes
@@ -80,6 +81,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "node_2", list.head.pointer.data
     assert_equal "node_3", list.head.pointer.pointer.data
     assert_equal 3, list.count
+    assert_equal "node_1 node_2 node_3", list.all
   end
 
   def test_the_second_of_those_new_nodes_points_to_nil_and_is_the_tail
@@ -105,6 +107,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "new_node_1", list.head.data
     assert_equal "node_1", list.head.pointer.data
+    assert_equal "new_node_1 node_1", list.all
   end
 
   def test_old_head_node_is_now_the_tail
@@ -122,6 +125,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "node_3", list.head.data
     assert_equal "node_2", list.head.pointer.data
     assert_equal "node_1", list.find_tail.data
+    assert_equal "node_3 node_2 node_1", list.all
   end
 
   def test_list_can_get_a_new_node_inserted_in_the_middle
@@ -132,7 +136,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "and", list.head.pointer.data
     assert_equal "node_2", list.head.pointer.pointer.data
-    # assert_equal "node_1 and node_2 node_3", list.all
+    assert_equal "node_1 and node_2 node_3", list.all
   end
 
   def test_list_can_insert_two_nodes_to_the_list
@@ -144,7 +148,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "and", list.head.pointer.data
     assert_equal "&", list.head.pointer.pointer.pointer.data
-    # assert_equal "node_1 and node_2 & node_3", list.all
+    assert_equal "node_1 and node_2 & node_3", list.all
   end
 
   def test_list_can_insert_two_nodes_next_to_each_other
@@ -156,7 +160,7 @@ class LinkedListTest < Minitest::Test
 
     list.insert(2, "beautiful")
     assert_equal "beautiful", list.head.pointer.pointer.data
-    # assert_equal "Hello there beautiful lovely friend", list.all
+    assert_equal "Hello there beautiful lovely friend", list.all
   end
 
   def test_includes_method_returns_a_boolean_value
@@ -193,6 +197,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "loom", list.remove_tail
     assert_equal "zoom", list.find_tail.data
     assert_equal 2, list.count
+    assert_equal "boom zoom", list.all
   end
 
   def test_we_can_pop_the_tail_node_off
@@ -203,6 +208,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "there", list.find_tail.data
     assert_equal 2, list.count
+    assert_equal "Hello there", list.all
   end
 
   def test_we_can_pop_multiple_elements_off_the_list_and_return_those_items_as_a_string
@@ -217,6 +223,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "curse of the drinking class", list.pop(5)
     assert_equal 3, list.count
+    assert_equal "work is the", list.all
     assert_equal "the", list.find_tail.data
   end
 
@@ -235,15 +242,36 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_list_can_return_all_node_data_from_the_list_in_order
-    skip
+    list = LinkedList.new("bright")
+    list.append("copper")
+    list.append("kettles")
+    list.append("and")
+    list.append("warm")
+    list.append("woolen")
+    list.append("mittens")
+
+    assert_equal "bright copper kettles and warm woolen mittens", list.all
   end
 
   def test_we_can_delete_a_node_based_on_its_index
-    skip
+    list = LinkedList.new("bee")
+    list.append("bop")
+    list.append("a")
+    list.append("lula")
+
+    assert_equal "bop", list.delete_by_index(1)
+    assert_equal "bee a lula", list.all
   end
 
   def test_we_can_delete_a_node_based_on_its_data
-    skip
+    list = LinkedList.new("bee")
+    list.append("bop")
+    list.append("a")
+    list.append("lula")
+
+    assert_equal "bop", list.delete_by_data("bop")
+    assert_equal 3, list.count
+    assert_equal "bee a lula", list.all
   end
 
   def test_we_can_delete_the_head_and_second_node_becomes_new_head
