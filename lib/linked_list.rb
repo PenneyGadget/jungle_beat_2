@@ -71,7 +71,7 @@ class LinkedList
     until current_head.pointer == find_tail
       current_head = current_head.pointer
     end
-    current_head.data
+    current_head
   end
 
   def remove_tail
@@ -91,7 +91,7 @@ class LinkedList
       new_tail = second_to_last
       new_tail.pointer = nil
     end
-    popped
+    popped.reverse.join(" ")
   end
 
   def find
@@ -112,10 +112,7 @@ class LinkedList
 
 end
 
-# list = LinkedList.new("boom")
-# list.append("zoom")
-# list.append("loom")
-# list.count
-# list.second_to_last
-# list.remove_tail
-# list.find_tail
+list = LinkedList.new("boom")
+list.append("zoom")
+list.append("loom")
+list.pop

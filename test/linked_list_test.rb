@@ -182,7 +182,7 @@ class LinkedListTest < Minitest::Test
     list.append("zoom")
     list.append("loom")
 
-    assert_equal "zoom", list.second_to_last
+    assert_equal "zoom", list.second_to_last.data
   end
 
   def test_we_can_remove_the_last_element
@@ -195,17 +195,29 @@ class LinkedListTest < Minitest::Test
     assert_equal 2, list.count
   end
 
-  def test_list_can_pop_the_tail_node_off
+  def test_we_can_pop_the_tail_node_off
     list = LinkedList.new("Hello")
     list.append("there")
     list.append("friend")
     list.pop
 
     assert_equal "there", list.find_tail.data
+    assert_equal 2, list.count
   end
 
-  def test_list_has_a_new_tail
-    skip
+  def test_we_can_pop_multiple_elements_off_the_list_and_return_those_items_as_a_string
+    list = LinkedList.new("work")
+    list.append("is")
+    list.append("the")
+    list.append("curse")
+    list.append("of")
+    list.append("the")
+    list.append("drinking")
+    list.append("class")
+
+    assert_equal "curse of the drinking class", list.pop(5)
+    assert_equal 3, list.count
+    assert_equal "the", list.find_tail.data
   end
 
   def test_we_can_find_random_node_data_when_we_pass_in_an_index_number
