@@ -1,8 +1,9 @@
 require_relative 'node'
+require 'pry'
 
 class LinkedList
 
-  attr_accessor :head, :data, :pointer
+  attr_accessor :head, :data, :pointer, :linked_list
 
   def initialize(data = nil)
     @head = Node.new(data)
@@ -94,11 +95,11 @@ class LinkedList
     popped.reverse.join(" ")
   end
 
-  def find(pos, num = 1)
+  def find(position, num = 1)
     found = []
     count = 0
     current_head = @head
-    until count == pos
+    until count == position
       current_head = current_head.pointer
       count += 1
     end

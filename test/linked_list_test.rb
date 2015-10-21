@@ -11,9 +11,7 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_there_is_a_node
-    node = Node.new(1)
-
-    assert node
+    assert Node.new(1)
   end
 
   def test_that_one_node_is_the_head
@@ -169,11 +167,24 @@ class LinkedListTest < Minitest::Test
     assert_equal "Hello there beautiful lovely friend", list.all
   end
 
+  def test_we_can_insert_a_string_of_words_that_get_separated_into_individual_nodes
+    list = LinkedList.new("Hello")
+    list.append("friend")
+    list.insert(1, "there lovely")
+    assert_equal "Hello there lovely friend", list.all
+    # assert_equal 4, list.count
+
+    list.insert(2, "doo dee dum bop bam")
+    assert_equal "Hello there lovely doo dee dum bop bam friend", list.all
+    # assert_equal 9, list.count
+  end
+
   def test_includes_method_returns_a_boolean_value
     list = LinkedList.new("Hello")
     list.append("there")
     list.append("friend")
 
+    assert_equal "Hello there friend", list.all
     assert list.includes?("friend")
     refute list.includes?("puppies")
   end
@@ -307,6 +318,7 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_node_data_can_be_any_kind_of_data_and_we_can_do_all_the_things
+    skip
     list = LinkedList.new("whoa there")
     list.append(234)
     list.prepend(["apples", "oranges"])
