@@ -65,6 +65,13 @@ class LinkedListTest < Minitest::Test
     assert_equal "node_2", list.head.pointer.data
   end
 
+  def test_appending_one_node_means_there_is_now_two_nodes
+    list = LinkedList.new("node_1")
+    list.append("node_2")
+
+    assert_equal 2, list.count
+  end
+
   def test_list_can_append_two_nodes
     list = LinkedList.new("node_1")
     list.append("node_2")
@@ -72,6 +79,7 @@ class LinkedListTest < Minitest::Test
 
     assert_equal "node_2", list.head.pointer.data
     assert_equal "node_3", list.head.pointer.pointer.data
+    assert_equal 3, list.count
   end
 
   def test_the_second_of_those_new_nodes_points_to_nil_and_is_the_tail
@@ -169,8 +177,25 @@ class LinkedListTest < Minitest::Test
     assert_equal 4, list.count
   end
 
+  def test_we_can_find_the_second_to_last_node
+    list = LinkedList.new("boom")
+    list.append("zoom")
+    list.append("loom")
+
+    assert_equal "zoom", list.second_to_last
+  end
+
+  def test_we_can_remove_the_last_element
+    list = LinkedList.new("boom")
+    list.append("zoom")
+    list.append("loom")
+
+    assert_equal "loom", list.remove_tail
+    assert_equal "zoom", list.find_tail.data
+    assert_equal 2, list.count
+  end
+
   def test_list_can_pop_the_tail_node_off
-    skip
     list = LinkedList.new("Hello")
     list.append("there")
     list.append("friend")

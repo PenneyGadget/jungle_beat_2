@@ -66,9 +66,32 @@ class LinkedList
     count
   end
 
+  def second_to_last
+    current_head = @head
+    until current_head.pointer == find_tail
+      current_head = current_head.pointer
+    end
+    current_head.data
+  end
+
+  def remove_tail
+    current_head = @head
+    until current_head.pointer.pointer == nil
+      current_head = current_head.pointer
+    end
+    last_element = current_head.pointer.data
+    current_head.pointer = nil
+    last_element
+  end
+
   def pop(num = 1)
-
-
+    popped = []
+    num.times do
+      popped << find_tail.data
+      new_tail = second_to_last
+      new_tail.pointer = nil
+    end
+    popped
   end
 
   def find
@@ -88,3 +111,11 @@ class LinkedList
   end
 
 end
+
+# list = LinkedList.new("boom")
+# list.append("zoom")
+# list.append("loom")
+# list.count
+# list.second_to_last
+# list.remove_tail
+# list.find_tail
