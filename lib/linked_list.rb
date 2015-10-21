@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'pry'
 
 class LinkedList
 
@@ -94,8 +95,19 @@ class LinkedList
     popped.reverse.join(" ")
   end
 
-  def find
-
+  def find(pos, num = 1)
+    found = []
+    count = 0
+    current_head = @head
+    until count == pos
+      current_head = current_head.pointer
+      count += 1
+    end
+    num.times do
+      found << current_head.data
+      current_head = current_head.pointer
+    end
+    found.join(" ")
   end
 
   def all

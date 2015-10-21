@@ -220,12 +220,18 @@ class LinkedListTest < Minitest::Test
     assert_equal "the", list.find_tail.data
   end
 
-  def test_we_can_find_random_node_data_when_we_pass_in_an_index_number
-    skip
-  end
+  def test_we_can_find_varying_node_data_when_we_pass_in_an_index_number
+    list = LinkedList.new("bright")
+    list.append("copper")
+    list.append("kettles")
+    list.append("and")
+    list.append("warm")
+    list.append("woolen")
+    list.append("mittens")
 
-  def test_we_can_find_several_pieces_of_data_starting_at_an_index_number
-    skip
+    assert_equal "warm", list.find(4)
+    assert_equal "copper kettles", list.find(1, 2)
+    assert_equal "kettles and warm", list.find(2, 3)
   end
 
   def test_list_can_return_all_node_data_from_the_list_in_order
@@ -246,6 +252,27 @@ class LinkedListTest < Minitest::Test
 
   def test_delete_more_items_then_are_in_the_list
     skip
+  end
+
+  def test_we_try_to_find_more_items_than_are_in_the_list
+    skip
+    #list is 8 items long and we say list.find(4, 10)
+  end
+
+  def test_we_try_to_pop_off_more_items_than_the_list_contains
+
+  end
+
+  def test_an_error_is_raised_if_we_try_to_pop_off_the_tail_while_its_also_the_head
+
+  end
+
+  def test_an_error_is_raised_if_we_try_to_remove_last_element_while_its_also_the_head
+
+  end
+
+  def test_an_error_is_raised_if_we_try_to_find_the_second_to_last_element_in_a_one_element_list
+
   end
 
   def test_node_data_can_be_any_kind_of_data
