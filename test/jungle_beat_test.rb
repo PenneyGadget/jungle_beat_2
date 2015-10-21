@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require '../lib/jungle_beat'
+require 'pry'
 
 class JungleBeatTest < Minitest::Test
 
@@ -13,7 +14,6 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_it_plays
-    skip
     jb = JungleBeat.new("bee bop a lula bam bam boom")
 
     assert jb.play
@@ -97,13 +97,11 @@ class JungleBeatTest < Minitest::Test
     jb.insert(3, "boom boom bam")
 
     assert_equal "deep dee dop boom boom bam dee doh", jb.all
-    # assert_equal 8, jb.count
+    assert_equal 8, jb.count
   end
 
   def test_we_can_see_if_a_beat_is_in_the_list
-    skip
-    #this isn't working because the insert method isn't splitting the string
-    jb = JungleBeat.new("boo do da zippity do da")
+    jb = JungleBeat.new("boo bam bee zippity doo dah")
 
     assert jb.includes?("zippity")
     refute jb.includes?("pickles")

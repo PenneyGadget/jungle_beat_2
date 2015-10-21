@@ -52,7 +52,7 @@ class LinkedList
 
   def includes?(data)
     current_head = @head
-    while current_head.pointer != nil
+    while current_head.pointer != nil && current_head.data != data
       current_head = current_head.pointer
     end
     if current_head.data == data
