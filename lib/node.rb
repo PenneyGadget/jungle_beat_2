@@ -2,9 +2,8 @@ class Node
 
   attr_accessor :data, :pointer
 
-  def initialize(data, pointer=nil)
+  def initialize(data)
     @data = data
-    @pointer = pointer
   end
 
 end

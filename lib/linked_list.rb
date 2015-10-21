@@ -35,14 +35,19 @@ class LinkedList
   def insert(position, data)
     count = 0
     current_head = @head
-    new_node = Node.new(data)
-
-    until count == position -1
+    until count == position - 1
       count +=1
       current_head = current_head.pointer
     end
-    new_node.pointer = current_head.pointer
-    current_head.pointer = new_node
+    before_node = current_head
+    after_node = current_head.pointer
+
+    split_data = data.split
+    split_data.each do |d|
+      before_node.pointer = Node.new(d)
+      before_node = before_node.pointer
+    end
+    before_node.pointer = after_node
   end
 
   def includes?(data)

@@ -27,7 +27,7 @@ class JungleBeatTest < Minitest::Test
 
   def test_we_can_pass_in_a_string_that_becomes_a_linked_list
     jb = JungleBeat.new("bee bop a lula bam bam boom")
-
+#fix this
     assert jb
   end
 
@@ -132,27 +132,39 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_we_can_change_the_speed_of_the_playback
-    skip
     jb = JungleBeat.new("bee bop a lula bam bam boom")
+    jb.rate = 200
 
-    assert jb.rate(200)
-    asset jb.rate(50)
+    assert_equal 200, jb.rate
   end
 
   def test_we_can_change_the_voice
+    jb = JungleBeat.new("roses are red bam dee dee boom")
 
+    assert_equal "Boing", jb.voice
+    jb.voice = "Bahh"
+    assert_equal "Bahh", jb.voice
   end
 
   def test_we_can_reset_the_rate_back_to_the_original_speed
-    skip
     jb = JungleBeat.new("bee bop a lula bam bam boom")
 
-    assert jb.rate(200)
-    assert_equal jb.reset_rate, jb.play
+    assert_equal 500, jb.rate
+    jb.rate = 200
+    assert_equal 200, jb.rate
+    jb.reset_rate
+    assert_equal 500, jb.rate
   end
 
   def test_we_can_reset_the_voice_back_to_the_original_voice
 
+  end
+
+  def test_play_rate_and_voice_surprise_method
+    skip
+    jb = JungleBeat.new("roses are red bam dee dee boom")
+#why isn't this one running???
+    assert jb.rate_and_voice_surprise!
   end
 
 end

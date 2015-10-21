@@ -6,10 +6,12 @@ require 'pry'
 
 class JungleBeat
 
-  attr_accessor :beats, :head, :data, :linked_list
+  attr_accessor :beats, :head, :data, :linked_list, :rate, :voice
 
   def initialize(beats)
     @beats = beats
+    @rate = 500
+    @voice = "Boing"
     split_beats = beats.split
     first_beat = split_beats[0]
     @linked_list = LinkedList.new(first_beat)
@@ -24,24 +26,19 @@ class JungleBeat
   end
 
   def play
-    `say -r 500 -v Boing #{beats}`
-  end
-
-  def rate(rate)
-    #how do I make this overwrite the play method permanently?
     `say -r #{rate} -v Boing #{beats}`
   end
 
   def reset_rate
-    `say -r 500 -v Boing #{beats}`
-  end
-
-  def voice
-    `say -r 500 -v Boing #{beats}`
+    @rate = 500
   end
 
   def reset_voice
+    @voice = "Boing"
+  end
 
+  def play_rate_and_voice_surprise!
+    `say -r #{rand(0..500)} -v #{@voices.sample} #{beats}`
   end
 
   def all

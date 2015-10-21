@@ -172,11 +172,11 @@ class LinkedListTest < Minitest::Test
     list.append("friend")
     list.insert(1, "there lovely")
     assert_equal "Hello there lovely friend", list.all
-    # assert_equal 4, list.count
+    assert_equal 4, list.count
 
     list.insert(2, "doo dee dum bop bam")
-    assert_equal "Hello there lovely doo dee dum bop bam friend", list.all
-    # assert_equal 9, list.count
+    assert_equal "Hello there doo dee dum bop bam lovely friend", list.all
+    assert_equal 9, list.count
   end
 
   def test_includes_method_returns_a_boolean_value
