@@ -1,5 +1,4 @@
 require_relative 'node'
-require 'pry'
 
 class LinkedList
 
@@ -150,10 +149,3 @@ class LinkedList
   end
 
 end
-
-list = LinkedList.new("bap")
-list.append(2)
-list.prepend(["apples", "oranges"])
-list.insert(1, "are so")
-list.append({"puppies" => :cute})
-list.all

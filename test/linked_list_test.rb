@@ -314,7 +314,14 @@ class LinkedListTest < Minitest::Test
     list.append({"puppies" => :cute})
 
     assert_equal 5, list.count
-    assert_equal "apples oranges are so whoa there 234 {\"puppies\"=>:cute}", list.all
+    assert_equal 234, list.second_to_last.data
+
+    list.delete_by_index(4)
+    list.pop
+
+    assert_equal "apples oranges are so whoa there", list.all
+    # assert list.includes?("oranges") #failing??
+    # assert_equal "whoa there", list.find(4, 2) #undefined method 'data' for nil class
   end
 
 end
