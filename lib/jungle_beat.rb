@@ -24,7 +24,7 @@ class JungleBeat
   end
 
   def play
-    `say -r #{rate} -v Boing #{beats}`
+    `say -r #{rate} -v #{voice} #{beats}`
   end
 
   def reset_rate
