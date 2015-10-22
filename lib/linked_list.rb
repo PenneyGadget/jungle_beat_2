@@ -54,6 +54,14 @@ class LinkedList
 
   def includes?(data)
     current_head = @head
+    before_node = current_head
+    after_node = current_head.pointer
+    split_data = current_head.data.split
+    split_data.each do |d|
+      before_node.pointer = Node.new(d)
+      before_node = before_node.pointer
+    end
+    before_node.pointer = after_node
     while current_head.pointer != nil && current_head.data != data
       current_head = current_head.pointer
     end
@@ -65,13 +73,7 @@ class LinkedList
   end
 
   def count
-    count = 1
-    current_head = @head
-    until current_head.pointer == nil
-      current_head = current_head.pointer
-      count += 1
-    end
-    count
+    all.split(" ").length
   end
 
   def second_to_last
