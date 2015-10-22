@@ -293,47 +293,52 @@ class LinkedListTest < Minitest::Test
 
   def test_we_can_delete_the_head_and_second_node_becomes_new_head
     skip
-    #should the second node become the new head or should the list cease to exist?
   end
 
   def test_we_try_to_find_more_items_than_are_in_the_list
-    skip
-    #list is 8 items long and we say list.find(4, 10)
+    list = LinkedList.new("hello there beautiful world")
+
+    assert_equal "Nope, the list isn't that long. Sorry bro.", list.find(2, 6)
+    assert_equal "Nope, the list isn't that long. Sorry bro.", list.find(12, 4)
+
   end
 
   def test_we_try_to_pop_off_more_items_than_are_in_the_list
-    skip
+    list = LinkedList.new("Roses are red")
+
+    assert_equal "No way Jose! List isn't that long.", list.pop(47)
   end
 
-  def test_an_error_is_raised_if_we_try_to_pop_off_the_tail_while_its_also_the_head
-    skip
-  end
+  def test_we_try_to_pop_off_the_tail_while_its_also_the_head_and_chaos_happens
+    list = LinkedList.new("BOOM!")
 
-  def test_an_error_is_raised_if_we_try_to_remove_last_element_while_its_also_the_head
-    skip
+    assert_equal "Ummmm, doing that would leave you with nothing but scary blank space.", list.pop(1)
   end
 
   def test_an_error_is_raised_if_we_try_to_find_the_second_to_last_element_in_a_one_element_list
-    skip
+    list = LinkedList.new("LOVE!")
+
+    assert_equal "Nope!", list.second_to_last
   end
 
   def test_node_data_can_be_any_kind_of_data_and_we_can_do_all_the_things
-    skip
-    list = LinkedList.new("whoa there")
+    list = LinkedList.new("whoa")
     list.append(234)
-    list.prepend(["apples", "oranges"])
-    list.insert(1, "are so")
-    list.append({"puppies" => :cute})
+    list.prepend("oranges")
+    list.insert(1, "are so *&$#!")
 
-    assert_equal 5, list.count
-    assert_equal 234, list.second_to_last.data
+    assert_equal 6, list.count
+    assert_equal "oranges are so *&$#! whoa 234", list.all
+    assert_equal "whoa", list.second_to_last.data
 
     list.delete_by_index(4)
     list.pop
 
-    assert_equal "apples oranges are so whoa there", list.all
-    # assert list.includes?("oranges") #failing??
-    # assert_equal "whoa there", list.find(4, 2) #undefined method 'data' for nil class
+    assert_equal "oranges are so *&$#!", list.all
+    assert list.includes?("oranges")
+    refute list.includes?("coffee!!!!!")
+    assert_equal "are so *&$#!", list.find(1, 3)
+    assert_equal "No way Jose! List isn't that long.", list.pop(666)
   end
 
 end

@@ -73,6 +73,9 @@ class LinkedList
   end
 
   def second_to_last
+    if count < 2
+      return "Nope!"
+    end
     current_head = @head
     until current_head.pointer == find_tail
       current_head = current_head.pointer
@@ -91,6 +94,12 @@ class LinkedList
   end
 
   def pop(num = 1)
+    if count < num
+      return "No way Jose! List isn't that long."
+    end
+    if count == num
+      return "Ummmm, doing that would leave you with nothing but scary blank space."
+    end
     popped = []
     num.times do
       popped << find_tail.data
@@ -101,6 +110,9 @@ class LinkedList
   end
 
   def find(position, num = 1)
+    if count < position + num
+      return "Nope, the list isn't that long. Sorry bro."
+    end
     found = []
     count = 0
     current_head = @head

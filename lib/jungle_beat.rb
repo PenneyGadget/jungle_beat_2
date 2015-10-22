@@ -18,11 +18,9 @@ class JungleBeat
     split_beats[1..-1].each do |beat|
       linked_list.append(beat)
     end
-    @voices = ["Agnes", "Allison", "Ava", "Kathy", "Princess", "Samantha",
-               "Susan", "Vicki", "Victoria", "Alex", "Bruce", "Fred", "Junio",
-               "Ralph", "Tom", "Albert", "Bad News", "Bahh", "Bells", "Boing",
-               "Bubbles", "Cello", "Deranged", "Good News", "Hysterical",
-               "Pipe Organ", "Trinoids", "Whisper", "Zarvox"]
+    @voices = %w(Agnes Kathy Princess Samantha Vicki Victoria Alex Bruce
+                 Fred Junior Ralph Albert Bad Bahh Bells Boing Bubbles
+                 Cello Deranged Good Hysterical Pipe Trinoids Whisper Zarvox)
   end
 
   def play

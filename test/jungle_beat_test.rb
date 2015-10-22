@@ -14,7 +14,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_it_plays
-    jb = JungleBeat.new("bee bop a lula bam bam boom")
+    jb = JungleBeat.new("bee bop bam boom dee dum diggity dooo bap bap boom")
 
     assert jb.play
   end
@@ -27,8 +27,10 @@ class JungleBeatTest < Minitest::Test
 
   def test_we_can_pass_in_a_string_that_becomes_a_linked_list
     jb = JungleBeat.new("bee bop a lula bam bam boom")
-#fix this
+
     assert jb
+    assert_equal "bee bop a lula bam bam boom", jb.all
+    assert_equal "bee", jb.linked_list.head.data
   end
 
   def test_the_first_word_is_the_head
@@ -107,14 +109,6 @@ class JungleBeatTest < Minitest::Test
     refute jb.includes?("pickles")
   end
 
-  def test_we_can_find_a_string_of_beats
-    skip
-    jb = JungleBeat.new("boo do da zippity do da")
-
-    assert jb.includes?("zippity do da")
-    refute jb.includes?("pickles do da")
-  end
-
   def test_we_can_delete_a_beat_by_index
     jb = JungleBeat.new("bee bop a lula bam bam boom")
 
@@ -155,14 +149,19 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_we_can_reset_the_voice_back_to_the_original_voice
+    jb = JungleBeat.new("roses are red bam dee dee boom")
 
+    assert_equal "Boing", jb.voice
+    jb.voice = "Hysterical"
+    assert_equal "Hysterical", jb.voice
+    jb.reset_voice
+    assert_equal "Boing", jb.voice
   end
 
   def test_play_rate_and_voice_surprise_method
-    skip
-    jb = JungleBeat.new("roses are red bam dee dee boom")
-#why isn't this one running???
-    assert jb.rate_and_voice_surprise!
+    jb = JungleBeat.new("peter piper picked a peck of pickled peppers")
+
+    assert jb.play_rate_and_voice_surprise!
   end
 
 end
