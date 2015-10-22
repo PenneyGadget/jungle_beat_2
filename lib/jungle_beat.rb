@@ -71,6 +71,10 @@ class JungleBeat
     linked_list.insert(position, data)
   end
 
+  def find(position, num = 1)
+    linked_list.find(position, num)
+  end
+
   def includes?(data)
     linked_list.includes?(data)
   end

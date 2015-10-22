@@ -190,10 +190,10 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_count_method_returns_the_number_of_nodes_in_the_list
-    list = LinkedList.new(1)
-    list.append(2)
-    list.append(4)
-    list.append(8)
+    list = LinkedList.new("one")
+    list.append("two")
+    list.append("four")
+    list.append("eight")
 
     assert_equal 4, list.count
   end
@@ -321,9 +321,9 @@ class LinkedListTest < Minitest::Test
     assert_equal "Nope!", list.second_to_last
   end
 
-  def test_node_data_can_be_any_kind_of_data_and_we_can_do_all_the_things
+  def test_node_we_can_do_all_the_things
     list = LinkedList.new("whoa")
-    list.append(234)
+    list.append("BOOM")
     list.prepend("oranges")
     list.insert(1, "are so *&$#!")
 

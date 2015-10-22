@@ -23,6 +23,7 @@ class LinkedList
       current_head = current_head.pointer
     end
     current_head.pointer = Node.new(data)
+    data.split.count
   end
 
   def prepend(data)
@@ -30,6 +31,7 @@ class LinkedList
     old_head = @head
     new_node.pointer = old_head
     @head = new_node
+    data.split.count
   end
 
   def insert(position, data)
