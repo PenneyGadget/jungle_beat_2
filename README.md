@@ -1,4 +1,4 @@
-# jungle_beat
+# Jungle Beat
 
 #### Learning Goals / Areas of Focus
 
